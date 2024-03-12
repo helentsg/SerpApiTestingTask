@@ -7,7 +7,7 @@
 
 import UIKit
 
-protocol SearchResultsPresenterProtocol: AnyObject, UICollectionViewDataSource {
+protocol SearchResultsPresenterProtocol: AnyObject {
     var currentCount: Int { get }
     var tools : Tools { set get }
     func selectedItem(for indexPath: IndexPath)
@@ -15,6 +15,8 @@ protocol SearchResultsPresenterProtocol: AnyObject, UICollectionViewDataSource {
     func fetchImages()
     func updateToolsButton()
     func height(for indexPath: IndexPath, and width: CGFloat) -> CGFloat 
+    func image(for indexPath: IndexPath) -> ImagesResult
+    var lastIndex: IndexPath { get }
 }
 
 class SearchResultsPresenter: NSObject, SearchResultsPresenterProtocol {
@@ -29,6 +31,9 @@ class SearchResultsPresenter: NSObject, SearchResultsPresenterProtocol {
     let client = StackExchangeClient()
     var currentCount: Int {
         return images.count
+    }
+    var lastIndex: IndexPath {
+        IndexPath(item: images.count - 1, section: 0)
     }
     
     init(view: SearchResultsViewProtocol,
@@ -46,27 +51,6 @@ class SearchResultsPresenter: NSObject, SearchResultsPresenterProtocol {
       //  router.navigateToToolList(for: type, delegate: self)
     }
     
-}
-
-// MARK: UICollectionViewDataSource
-extension SearchResultsPresenter {
-    
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return images.count
-    }
-
-    /// - Tag: CellForItemAt
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(
-            withReuseIdentifier: SearchResultsViewControllerCell.reuseID,
-            for: indexPath) as? SearchResultsViewControllerCell else {
-            fatalError("Expected `\(SearchResultsViewControllerCell.self)` type for reuseIdentifier \(SearchResultsViewControllerCell.reuseID). Check the configuration.")
-        }
-        
-        let image = images[indexPath.row]
-        cell.configure(for: image)
-        return cell
-    }
 }
 
 extension SearchResultsPresenter {
@@ -91,9 +75,10 @@ extension SearchResultsPresenter {
                     self.isFetchInProgress = false
                     self.isLastPage = response.serpapiPagination.next == nil
                     self.images.append(contentsOf: response.imagesResults)
-                    if response.serpapiPagination.current > 0 {
+                    if self.currentPage > 1 {
                         let indexPathsToReload = self.calculateIndexPathsToReload(from: response.imagesResults)
                         self.view?.onFetchCompleted(with: indexPathsToReload)
+                        print(indexPathsToReload)
                     } else {
                         self.view?.onFetchCompleted(with: .none)
                     }
@@ -118,5 +103,10 @@ extension SearchResultsPresenter {
     
     func height(for indexPath: IndexPath, and width: CGFloat) -> CGFloat {
         return images[indexPath.item].calculateHeight(for: width)
+    }
+    
+    func image(for indexPath: IndexPath) -> ImagesResult {
+        let image = images[indexPath.item]
+        return image
     }
 }

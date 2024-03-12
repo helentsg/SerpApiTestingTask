@@ -61,13 +61,14 @@ extension SearchResultsVC {
         collectionView.collectionViewLayout = layout
         collectionView.register(SearchResultsViewControllerCell.self, forCellWithReuseIdentifier: SearchResultsViewControllerCell.reuseID)
         collectionView.delegate = self
-        collectionView.dataSource = presenter
+        collectionView.dataSource = self
         collectionView.prefetchDataSource = self
         collectionView.backgroundColor = .clear
         collectionView.contentInset = UIEdgeInsets(top: 23, left: 16, bottom: 10, right: 16)
         //        refreshControl.addTarget(self, action: #selector(didPullToRefresh), for: .valueChanged)
         //        collectionView.refreshControl = refreshControl
         collectionView.keyboardDismissMode = .onDrag
+        collectionView.isHidden = true
     }
     
     func setupActivityIndicator() {
@@ -216,12 +217,16 @@ extension SearchResultsVC: SearchResultsViewProtocol {
     }
     
     func onFetchCompleted(with newIndexPathsToReload: [IndexPath]?) {
-        guard let newIndexPathsToReload = newIndexPathsToReload else {
+        guard let newIndexPathsToReload else {
             indicatorView.stopAnimating()
             collectionView.isHidden = false
             collectionView.reloadData()
             return
         }
+        if let layout = self.collectionView.collectionViewLayout as? CustomLayout {
+            layout.reloadData()
+        }
+        collectionView.insertItems(at: newIndexPathsToReload)
         let indexPathsToReload = visibleIndexPathsToReload(intersecting: newIndexPathsToReload)
         collectionView.reloadItems(at: indexPathsToReload)
     }
@@ -238,17 +243,41 @@ extension SearchResultsVC: SearchResultsViewProtocol {
 
 private extension SearchResultsVC {
     
-    func isLoadingCell(for indexPath: IndexPath) -> Bool {
+    func isLoadingLastCells(for indexPath: IndexPath) -> Bool {
         guard let currentCount = presenter?.currentCount else {
             return false
         }
-        return indexPath.item >= currentCount
+        let lastCellsIndex = currentCount - 10
+        return indexPath.item >= lastCellsIndex
     }
     
     func visibleIndexPathsToReload(intersecting indexPaths: [IndexPath]) -> [IndexPath] {
-        let indexPathsForVisibleRows = collectionView.indexPathsForVisibleItems
-        let indexPathsIntersection = Set(indexPathsForVisibleRows).intersection(indexPaths)
+        let indexPathsForVisibleItems = collectionView.indexPathsForVisibleItems
+        let indexPathsIntersection = Set(indexPathsForVisibleItems).intersection(indexPaths)
         return Array(indexPathsIntersection)
+    }
+}
+
+// MARK: UICollectionViewDataSource
+extension SearchResultsVC: UICollectionViewDataSource {
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        presenter?.currentCount ?? 0
+    }
+    
+    /// - Tag: CellForItemAt
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        guard let presenter else {
+            fatalError("Presenter error")
+        }
+        guard let cell = collectionView.dequeueReusableCell(
+            withReuseIdentifier: SearchResultsViewControllerCell.reuseID,
+            for: indexPath) as? SearchResultsViewControllerCell else {
+            fatalError("Expected `\(SearchResultsViewControllerCell.self)` type for reuseIdentifier \(SearchResultsViewControllerCell.reuseID). Check the configuration.")
+        }
+        let image = presenter.image(for: indexPath)
+        cell.configure(for: image)
+        return cell
     }
 }
 
@@ -257,7 +286,7 @@ extension SearchResultsVC: UICollectionViewDataSourcePrefetching {
     
     func collectionView(_ collectionView: UICollectionView, prefetchItemsAt indexPaths: [IndexPath]) {
         print (indexPaths)
-        if indexPaths.contains(where: isLoadingCell) {
+        if indexPaths.contains(where: isLoadingLastCells) {
             presenter?.fetchImages()
         }
     }

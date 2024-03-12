@@ -19,9 +19,7 @@ extension ImagesRequest {
         let defaultParameters = ["engine": "google_images",
                                  "api_key": SecretAPI.key]
         
-        var parameters = ["ijn":String(tools.start),
-                          "num": String(tools.num),
-                          "tbm": tools.type.rawValue
+        var parameters = ["tbm": tools.type.rawValue
         ].merging(defaultParameters, uniquingKeysWith: +)
         
         if tools.size != .any {
