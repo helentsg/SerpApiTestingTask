@@ -1,9 +1,3 @@
-//
-//  UISearchBar+Extension.swift
-//  VIPERTest
-//
-//  Created by Elena Lucher on 09.03.2024.
-//
 
 import UIKit
 

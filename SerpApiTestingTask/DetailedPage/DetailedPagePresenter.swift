@@ -1,9 +1,4 @@
-//
-//  DetailedPagePresenter.swift
-//  SerpApiTestingTask
-//
-//  Created by Elena Lucher on 13.03.2024.
-//
+
 
 import UIKit
 

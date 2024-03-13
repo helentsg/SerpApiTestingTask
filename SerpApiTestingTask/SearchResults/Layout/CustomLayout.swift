@@ -1,11 +1,5 @@
-//
-//  CustomLayout.swift
-//  VIPERTest
-//
-//  Created by Elena Lucher on 07.03.2024.
-//
 
-import Foundation
+
 import UIKit
 
 protocol CustomLayoutDelegate: AnyObject {
@@ -45,8 +39,8 @@ class CustomLayout: UICollectionViewLayout {
         for column in 0..<numberOfColumns {
             xOffset.append(CGFloat(column) * columnWidth)
         }
-        var column = 0
-        var yOffset: [CGFloat] = .init(repeating: 0, count: numberOfColumns)
+        let column = 0
+        let yOffset: [CGFloat] = .init(repeating: 0, count: numberOfColumns)
         
         indexPaths.forEach { indexPath in
             guard let collectionView else {

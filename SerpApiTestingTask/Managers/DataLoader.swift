@@ -1,9 +1,4 @@
-//
-//  DataLoader.swift
-//  VIPERTest
-//
-//  Created by Elena Lucher on 08.03.2024.
-//
+
 
 import Foundation
 

@@ -1,11 +1,3 @@
-//
-//  DetailedVC.swift
-//  SerpApiTestingTask
-//
-//  Created by Elena Lucher on 13.03.2024.
-//
-
-import UIKit
 
 import UIKit
 
@@ -95,7 +87,7 @@ extension DetailedVC: DetailedViewProtocol {
     }
     
     func changeImageViewHeight() {
-        let width = imageView.frame.width
+        let width = view.frame.width
         if let newHeight = presenter?.calculateImageHeight(for: width) {
             imageViewHeight.constant = newHeight
             imageView.layoutIfNeeded()

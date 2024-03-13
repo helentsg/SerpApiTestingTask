@@ -1,9 +1,4 @@
-//
-//  SecretAPIkey.swift
-//  VIPERTest
-//
-//  Created by Elena Lucher on 11.03.2024.
-//
+
 
 import Foundation
 
