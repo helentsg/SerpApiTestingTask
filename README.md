@@ -1,0 +1,7 @@
+- MVP + Routers, UIKit, separated storyboards
+- Pagination / Paging
+- Custom Layout for UICollectionViewController
+- JSON Decoding
+- async / await
+- UIPageViewController to fetch previous and next Detailed pages
+- SFSafariViewController from WWDC2022
