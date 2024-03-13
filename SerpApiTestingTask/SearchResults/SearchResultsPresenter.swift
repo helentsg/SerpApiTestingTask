@@ -17,6 +17,7 @@ protocol SearchResultsPresenterProtocol: AnyObject {
     func height(for indexPath: IndexPath, and width: CGFloat) -> CGFloat 
     func image(for indexPath: IndexPath) -> ImagesResult
     var lastIndex: IndexPath { get }
+    func image(position: Int) -> ImagesResult?
 }
 
 class SearchResultsPresenter: NSObject, SearchResultsPresenterProtocol {
@@ -75,10 +76,10 @@ extension SearchResultsPresenter {
                     self.isFetchInProgress = false
                     self.isLastPage = response.serpapiPagination.next == nil
                     self.images.append(contentsOf: response.imagesResults)
+                    self.changePosition()
                     if self.currentPage > 1 {
                         let indexPathsToReload = self.calculateIndexPathsToReload(from: response.imagesResults)
                         self.view?.onFetchCompleted(with: indexPathsToReload)
-                        print(indexPathsToReload)
                     } else {
                         self.view?.onFetchCompleted(with: .none)
                     }
@@ -87,15 +88,30 @@ extension SearchResultsPresenter {
         }
     }
     
-    private func calculateIndexPathsToReload(from newImages: [ImagesResult]) -> [IndexPath] {
+}
+
+//MARK: Private methods:
+private extension SearchResultsPresenter {
+    
+    func calculateIndexPathsToReload(from newImages: [ImagesResult]) -> [IndexPath] {
         let startIndex = images.count - newImages.count
         let endIndex = startIndex + newImages.count
         return (startIndex..<endIndex).map { IndexPath(item: $0, section: 0) }
     }
     
+    func changePosition() {
+        for index in 0 ..< images.count {
+            images[index].position = index
+        }
+    }
+    
 }
  
 extension SearchResultsPresenter {
+    
+    func image(position: Int) -> ImagesResult? {
+        images[safeIndex: position]
+    }
     
     func updateToolsButton() {
         view?.setupToolsButton()

@@ -20,7 +20,7 @@ class ControllerFabric: NSObject {
     }
     
     class func detailedPageVC(for image: ImagesResult,
-                              delegate: SearchResultsPresenterProtocol)   -> UIViewController {
+                              delegate: SearchResultsPresenterProtocol)   -> UIPageViewController {
         let storyboard = UIStoryboard(name: "DetailedPageVC", bundle: nil)
         let controller = storyboard.instantiateViewController(withIdentifier: "DetailedPageVC") as! DetailedPageVC
         let router = DetailedPageRouter(controller: controller)
@@ -43,19 +43,6 @@ class ControllerFabric: NSObject {
         return controller
     }
     
-    //    class func detailedVC(for image: ImagesResult)  -> UIViewController {
-    //        let controller = DetailedViewController()
-//        let router = DetailedRouter(controller: controller)
-//        let presenter = DetailedPresenter(view: controller,
-//                                          router: router,
-//                                          image: image)
-//        let interactor = DetailedInteractor(presenter: presenter,
-//                                            image: image)
-//        presenter.interactor = interactor
-//        controller.presenter = presenter
-//        return controller
-//    }
-//    
     class func toolList(for type: ToolListType,
                         delegate: SearchResultsPresenterProtocol)   -> UIViewController {
         let storyboard = UIStoryboard(name: "ToolListVC", bundle: nil)
@@ -68,13 +55,5 @@ class ControllerFabric: NSObject {
         controller.presenter = presenter
         return controller
     }
-//    
-//    class func webVC(for image: ImagesResult)   -> UIViewController {
-//        let controller = WebViewController()
-//        let presenter =  WebViewPresenter(view: controller,
-//                                           image: image)
-//        controller.presenter = presenter
-//        return controller
-//    }
-    
+
 }

@@ -19,7 +19,6 @@
 		33964F8F2BA0499500A16E92 /* ToolListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33964F8E2BA0499500A16E92 /* ToolListVC.swift */; };
 		33964F922BA04A3700A16E92 /* DetailedPageVC.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 33964F912BA04A3700A16E92 /* DetailedPageVC.storyboard */; };
 		33964F942BA04A4700A16E92 /* DetailedPageVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33964F932BA04A4700A16E92 /* DetailedPageVC.swift */; };
-		33964F972BA04A6A00A16E92 /* WebVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33964F962BA04A6A00A16E92 /* WebVC.swift */; };
 		33964F992BA04A8700A16E92 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 33964F982BA04A8700A16E92 /* LaunchScreen.storyboard */; };
 		33964FA82BA04AD700A16E92 /* CustomSearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33964F9B2BA04AD700A16E92 /* CustomSearchBar.swift */; };
 		33964FAB2BA04AD700A16E92 /* UISearchBar+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33964F9F2BA04AD700A16E92 /* UISearchBar+Extension.swift */; };
@@ -55,6 +54,7 @@
 		33964FF42BA176C900A16E92 /* DetailedVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33964FF32BA176C900A16E92 /* DetailedVC.swift */; };
 		33964FF62BA176E700A16E92 /* DetailedPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33964FF52BA176E700A16E92 /* DetailedPresenter.swift */; };
 		33964FF82BA176F600A16E92 /* DetailedRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33964FF72BA176F600A16E92 /* DetailedRouter.swift */; };
+		33964FFC2BA1CD5500A16E92 /* Array+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33964FFB2BA1CD5500A16E92 /* Array+Extensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -91,7 +91,6 @@
 		33964F8E2BA0499500A16E92 /* ToolListVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolListVC.swift; sourceTree = "<group>"; };
 		33964F912BA04A3700A16E92 /* DetailedPageVC.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = DetailedPageVC.storyboard; sourceTree = "<group>"; };
 		33964F932BA04A4700A16E92 /* DetailedPageVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailedPageVC.swift; sourceTree = "<group>"; };
-		33964F962BA04A6A00A16E92 /* WebVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebVC.swift; sourceTree = "<group>"; };
 		33964F982BA04A8700A16E92 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		33964F9B2BA04AD700A16E92 /* CustomSearchBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomSearchBar.swift; sourceTree = "<group>"; };
 		33964F9F2BA04AD700A16E92 /* UISearchBar+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UISearchBar+Extension.swift"; sourceTree = "<group>"; };
@@ -127,6 +126,7 @@
 		33964FF32BA176C900A16E92 /* DetailedVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailedVC.swift; sourceTree = "<group>"; };
 		33964FF52BA176E700A16E92 /* DetailedPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailedPresenter.swift; sourceTree = "<group>"; };
 		33964FF72BA176F600A16E92 /* DetailedRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailedRouter.swift; sourceTree = "<group>"; };
+		33964FFB2BA1CD5500A16E92 /* Array+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+Extensions.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -190,7 +190,6 @@
 				33964F8B2BA0492900A16E92 /* Tools */,
 				33964F902BA04A1C00A16E92 /* DetailedPage */,
 				33964FF02BA1767F00A16E92 /* Detailed */,
-				33964F952BA04A5400A16E92 /* Web */,
 				33964F632BA0490C00A16E92 /* Assets.xcassets */,
 				33964F982BA04A8700A16E92 /* LaunchScreen.storyboard */,
 				33964F682BA0490C00A16E92 /* Info.plist */,
@@ -251,14 +250,6 @@
 			path = DetailedPage;
 			sourceTree = "<group>";
 		};
-		33964F952BA04A5400A16E92 /* Web */ = {
-			isa = PBXGroup;
-			children = (
-				33964F962BA04A6A00A16E92 /* WebVC.swift */,
-			);
-			path = Web;
-			sourceTree = "<group>";
-		};
 		33964F9C2BA04AD700A16E92 /* Custom Views */ = {
 			isa = PBXGroup;
 			children = (
@@ -272,6 +263,7 @@
 			children = (
 				33964F9F2BA04AD700A16E92 /* UISearchBar+Extension.swift */,
 				33964FC12BA0529800A16E92 /* AlertDisplayer.swift */,
+				33964FFB2BA1CD5500A16E92 /* Array+Extensions.swift */,
 				33964FC32BA052B600A16E92 /* Double+Extensions.swift */,
 				33964FC52BA052CA00A16E92 /* String+Extensions.swift */,
 			);
@@ -514,9 +506,9 @@
 				33964FE12BA0C1F800A16E92 /* ToolListCell.swift in Sources */,
 				33964FBE2BA04FE300A16E92 /* ImagesResultResponse.swift in Sources */,
 				33964FCE2BA0542700A16E92 /* Result.swift in Sources */,
-				33964F972BA04A6A00A16E92 /* WebVC.swift in Sources */,
 				33964FE82BA0C4BB00A16E92 /* ToolListRouter.swift in Sources */,
 				33964F5D2BA0490B00A16E92 /* SceneDelegate.swift in Sources */,
+				33964FFC2BA1CD5500A16E92 /* Array+Extensions.swift in Sources */,
 				33964FC42BA052B600A16E92 /* Double+Extensions.swift in Sources */,
 				33964FF62BA176E700A16E92 /* DetailedPresenter.swift in Sources */,
 				33964FEF2BA16FD500A16E92 /* DetailedPageRouter.swift in Sources */,

@@ -5,8 +5,7 @@
 //  Created by Elena Lucher on 13.03.2024.
 //
 
-import Foundation
-
+import SafariServices
 import UIKit
 
 protocol DetailedRouterProtocol {
@@ -26,11 +25,13 @@ class DetailedRouter: DetailedRouterProtocol {
     
     // MARK: Protocol methods
     func navigateToWebView(for image: ImagesResult) {
-//        let controller = ControllerFabric.webVC(for: image)
-//        let navigationController = self.controller?.navigationController
-//        navigationController?.pushViewController(controller,
-//                                                 animated: true)
+        if let url = URL(string: image.original) {
+            let config = SFSafariViewController.Configuration()
+            config.entersReaderIfAvailable = true
+            let vc = SFSafariViewController(url: url, configuration: config)
+            let navigationController = self.controller?.navigationController
+            navigationController?.present(vc, animated: true)
+        }
     }
 
-    
 }

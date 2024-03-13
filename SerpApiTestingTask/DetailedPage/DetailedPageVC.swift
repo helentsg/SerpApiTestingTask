@@ -9,12 +9,14 @@ import UIKit
 
 protocol DetailedPageViewProtocol: AnyObject {
     func set(pages: [UIViewController])
+    func setupPreviousButton(isEnabled: Bool)
+    func setupNextButton(isEnabled: Bool)
 }
 
 class DetailedPageVC: UIPageViewController {
     
     private var previousButton = UIBarButtonItem()
-    private var nextButton: UIBarButtonItem?
+    private var nextButton = UIBarButtonItem()
    
     var presenter: DetailedPagePresenterProtocol?
     
@@ -97,11 +99,12 @@ extension DetailedPageVC: DetailedPageViewProtocol {
         setViewControllers(pages, direction: .forward, animated: false)
     }
     
-    func configure(for image: ImagesResult) {
-        
-        if image.position == 0 {
-            previousButton.isEnabled = false
-        }
+    func setupPreviousButton(isEnabled: Bool) {
+        previousButton.isEnabled = isEnabled
+    }
+    
+    func setupNextButton(isEnabled: Bool) {
+        nextButton.isEnabled = isEnabled
     }
     
 }

@@ -47,7 +47,7 @@ extension DetailedVC {
     }
     
     func setupSelf() {
-        view.backgroundColor = .systemGray6
+        view.backgroundColor = .white
     }
     
     func setupImageView() {
@@ -95,7 +95,7 @@ extension DetailedVC: DetailedViewProtocol {
     }
     
     func changeImageViewHeight() {
-        let width = imageView.bounds.width
+        let width = imageView.frame.width
         if let newHeight = presenter?.calculateImageHeight(for: width) {
             imageViewHeight.constant = newHeight
             imageView.layoutIfNeeded()

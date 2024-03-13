@@ -59,6 +59,7 @@
                                         </constraints>
                                     </view>
                                 </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="bottom" secondItem="HO7-hF-q4w" secondAttribute="bottom" id="OXS-KB-AdQ"/>
                                     <constraint firstItem="HO7-hF-q4w" firstAttribute="top" secondItem="zS1-W1-rmw" secondAttribute="top" id="XVu-bn-isA"/>
@@ -71,7 +72,7 @@
                             </scrollView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstAttribute="bottom" secondItem="zS1-W1-rmw" secondAttribute="bottom" id="Oe1-MO-8aW"/>
                             <constraint firstItem="zS1-W1-rmw" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="n8N-Jr-p3k"/>

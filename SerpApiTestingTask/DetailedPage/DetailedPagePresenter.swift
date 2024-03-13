@@ -40,12 +40,11 @@ class DetailedPagePresenter : DetailedPagePresenterProtocol {
         self.router = router
         self.image = image
         self.delegate = delegate
-        createInitialPage()
+        
     }
     
     func createInitialPage() {
-        let initialPage = ControllerFabric.detailedPageVC(for: image,
-                                                          delegate: delegate)
+        let initialPage = ControllerFabric.detailedVC(for: image)
         view.set(pages: [initialPage])
     }
     
@@ -62,7 +61,14 @@ class DetailedPagePresenter : DetailedPagePresenterProtocol {
     }
     
     func getPreviousVC() -> UIViewController? {
-        nil
+        if let previousImage = delegate.image(position: image.position - 1) {
+            let previousPage = ControllerFabric.detailedVC(for: previousImage)
+            view.setupPreviousButton(isEnabled: true)
+            return previousPage
+        } else {
+            view.setupPreviousButton(isEnabled: false)
+            return nil
+        }
     }
     
     func nextButtonTapped() {
@@ -70,7 +76,14 @@ class DetailedPagePresenter : DetailedPagePresenterProtocol {
     }
     
     func getNextVC() -> UIViewController? {
-        nil
+        if let nextImage = delegate.image(position: image.position + 1) {
+            let previousPage = ControllerFabric.detailedVC(for: nextImage)
+            view.setupNextButton(isEnabled: true)
+            return previousPage
+        } else {
+            view.setupNextButton(isEnabled: false)
+            return nil
+        }
     }
     
 }

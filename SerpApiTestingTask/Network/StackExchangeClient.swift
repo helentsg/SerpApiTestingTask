@@ -29,7 +29,11 @@ final class StackExchangeClient {
                 return
             }
             guard let decodedResponse = try? JSONDecoder().decode(ImagesResultResponse.self, from: data) else {
-                completion(Result.failure(DataResponseError.decoding))
+                if let error = try? JSONDecoder().decode(GoogleError.self, from: data) {
+                    completion(Result.failure(DataResponseError.googleError(error.error)))
+                } else {
+                    completion(Result.failure(DataResponseError.decoding))
+                }
                 return
             }
             

@@ -16,7 +16,7 @@ struct ImagesResultResponse: Codable {
 
 // MARK: - ImagesResult
 struct ImagesResult: Codable {
-    let position: Int
+    var position: Int
     let thumbnail: String
     let source: String
     let title: String
