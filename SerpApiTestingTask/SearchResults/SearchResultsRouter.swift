@@ -30,7 +30,7 @@ class SearchResultsRouter: SearchResultsRouterProtocol {
     // MARK: Protocol methods
     func navigateToDetailedPageView(for image: ImagesResult,
                                 delegate: SearchResultsPresenterProtocol) {
-        let controller = ControllerFabric.detailedPageVC(for: image, delegate: delegate)
+        let controller = ControllerFabric.detailedVC(for: image)
         let navigationController = self.controller?.navigationController
         navigationController?.pushViewController(controller,
                                                  animated: true)

@@ -104,5 +104,4 @@ extension DetailedPageVC: DetailedPageViewProtocol {
         }
     }
     
-    
 }

@@ -69,8 +69,9 @@ extension DetailedVC {
     
     func setupActivityIndicator() {
         activity.color = .systemMint
-        view.addSubview(activity)
+        imageView.addSubview(activity)
         activity.center = imageView.center
+        activity.hidesWhenStopped = true
         activity.startAnimating()
     }
     
@@ -102,6 +103,7 @@ extension DetailedVC: DetailedViewProtocol {
     }
     
     func setup(image: UIImage) {
+        activity.stopAnimating()
         imageView.image = image
     }
     

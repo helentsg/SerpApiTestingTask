@@ -40,6 +40,7 @@ class DetailedPagePresenter : DetailedPagePresenterProtocol {
         self.router = router
         self.image = image
         self.delegate = delegate
+        createInitialPage()
     }
     
     func createInitialPage() {
