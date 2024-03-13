@@ -48,7 +48,7 @@ class SearchResultsPresenter: NSObject, SearchResultsPresenterProtocol {
     }
     
     func changeInList(for type: ToolListType) {
-      //  router.navigateToToolList(for: type, delegate: self)
+        router.navigateToToolList(for: type, delegate: self)
     }
     
 }

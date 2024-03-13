@@ -11,17 +11,43 @@
         <!--Tool ListVC-->
         <scene sceneID="s0d-6b-0kx">
             <objects>
-                <viewController id="Y6W-OH-hqX" customClass="ToolListVC" customModule="SerpApiTestingTask" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController restorationIdentifier="ToolListVC" storyboardIdentifier="ToolListVC" id="Y6W-OH-hqX" customClass="ToolListVC" customModule="SerpApiTestingTask" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="5EZ-qb-Rvc">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="B1H-Zu-1Zj" customClass="CustomSearchBar" customModule="SerpApiTestingTask" customModuleProvider="target">
+                                <rect key="frame" x="10" y="59" width="373" height="56"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <outlet property="delegate" destination="Y6W-OH-hqX" id="1Y9-4n-Ggz"/>
+                                </connections>
+                            </searchBar>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="yUI-YL-rDh">
+                                <rect key="frame" x="16" y="115" width="361" height="737"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </tableView>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="yUI-YL-rDh" secondAttribute="trailing" constant="16" id="7M8-ba-gJI"/>
+                            <constraint firstAttribute="bottom" secondItem="yUI-YL-rDh" secondAttribute="bottom" id="C6I-RJ-jOg"/>
+                            <constraint firstItem="B1H-Zu-1Zj" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="10" id="EwB-Lz-r6X"/>
+                            <constraint firstItem="B1H-Zu-1Zj" firstAttribute="trailing" secondItem="vDu-zF-Fre" secondAttribute="trailing" constant="-10" id="FBZ-yz-UFY"/>
+                            <constraint firstItem="yUI-YL-rDh" firstAttribute="top" secondItem="B1H-Zu-1Zj" secondAttribute="bottom" id="Nh4-2i-DFa"/>
+                            <constraint firstItem="B1H-Zu-1Zj" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" id="Vfl-aO-88Q"/>
+                            <constraint firstItem="yUI-YL-rDh" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="16" id="yDT-f7-Y2J"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="searchBar" destination="B1H-Zu-1Zj" id="IG4-4I-Es6"/>
+                        <outlet property="tableView" destination="yUI-YL-rDh" id="WVB-VD-Rk4"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="94" y="4"/>
+            <point key="canvasLocation" x="93.89312977099236" y="3.5211267605633805"/>
         </scene>
     </scenes>
     <resources>

@@ -45,6 +45,10 @@
 		33964FDA2BA0651000A16E92 /* CustomLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33964FD92BA0651000A16E92 /* CustomLayout.swift */; };
 		33964FDC2BA0676E00A16E92 /* SearchResultsRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33964FDB2BA0676E00A16E92 /* SearchResultsRouter.swift */; };
 		33964FDF2BA0761300A16E92 /* ControllerFabric.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33964FDE2BA0761300A16E92 /* ControllerFabric.swift */; };
+		33964FE12BA0C1F800A16E92 /* ToolListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33964FE02BA0C1F800A16E92 /* ToolListCell.swift */; };
+		33964FE42BA0C2A700A16E92 /* ToolListPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33964FE32BA0C2A700A16E92 /* ToolListPresenter.swift */; };
+		33964FE82BA0C4BB00A16E92 /* ToolListRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33964FE72BA0C4BB00A16E92 /* ToolListRouter.swift */; };
+		33964FEB2BA1615C00A16E92 /* DataLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33964FEA2BA1615C00A16E92 /* DataLoader.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -107,6 +111,10 @@
 		33964FD92BA0651000A16E92 /* CustomLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomLayout.swift; sourceTree = "<group>"; };
 		33964FDB2BA0676E00A16E92 /* SearchResultsRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultsRouter.swift; sourceTree = "<group>"; };
 		33964FDE2BA0761300A16E92 /* ControllerFabric.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ControllerFabric.swift; sourceTree = "<group>"; };
+		33964FE02BA0C1F800A16E92 /* ToolListCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ToolListCell.swift; sourceTree = "<group>"; };
+		33964FE32BA0C2A700A16E92 /* ToolListPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolListPresenter.swift; sourceTree = "<group>"; };
+		33964FE72BA0C4BB00A16E92 /* ToolListRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ToolListRouter.swift; sourceTree = "<group>"; };
+		33964FEA2BA1615C00A16E92 /* DataLoader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataLoader.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -161,6 +169,7 @@
 				33964FB12BA04B3B00A16E92 /* Network */,
 				33964F5A2BA0490B00A16E92 /* AppDelegate.swift */,
 				33964F5C2BA0490B00A16E92 /* SceneDelegate.swift */,
+				33964FE92BA1610700A16E92 /* Managers */,
 				33964F9C2BA04AD700A16E92 /* Custom Views */,
 				33964FA02BA04AD700A16E92 /* Extensions */,
 				33964FA42BA04AD700A16E92 /* jsons */,
@@ -209,8 +218,11 @@
 		33964F8B2BA0492900A16E92 /* Tools */ = {
 			isa = PBXGroup;
 			children = (
+				33964FE22BA0C20200A16E92 /* Cell */,
 				33964F8C2BA0497300A16E92 /* ToolListVC.storyboard */,
 				33964F8E2BA0499500A16E92 /* ToolListVC.swift */,
+				33964FE32BA0C2A700A16E92 /* ToolListPresenter.swift */,
+				33964FE72BA0C4BB00A16E92 /* ToolListRouter.swift */,
 			);
 			path = Tools;
 			sourceTree = "<group>";
@@ -308,6 +320,22 @@
 				33964FDE2BA0761300A16E92 /* ControllerFabric.swift */,
 			);
 			path = Fabric;
+			sourceTree = "<group>";
+		};
+		33964FE22BA0C20200A16E92 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				33964FE02BA0C1F800A16E92 /* ToolListCell.swift */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
+		33964FE92BA1610700A16E92 /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				33964FEA2BA1615C00A16E92 /* DataLoader.swift */,
+			);
+			path = Managers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -456,20 +484,24 @@
 				33964FAE2BA04AD700A16E92 /* GoogleModel.swift in Sources */,
 				33964F8F2BA0499500A16E92 /* ToolListVC.swift in Sources */,
 				33964FDC2BA0676E00A16E92 /* SearchResultsRouter.swift in Sources */,
+				33964FE12BA0C1F800A16E92 /* ToolListCell.swift in Sources */,
 				33964FBE2BA04FE300A16E92 /* ImagesResultResponse.swift in Sources */,
 				33964FCE2BA0542700A16E92 /* Result.swift in Sources */,
 				33964F972BA04A6A00A16E92 /* WebVC.swift in Sources */,
+				33964FE82BA0C4BB00A16E92 /* ToolListRouter.swift in Sources */,
 				33964F5D2BA0490B00A16E92 /* SceneDelegate.swift in Sources */,
 				33964FC42BA052B600A16E92 /* Double+Extensions.swift in Sources */,
 				33964FC62BA052CA00A16E92 /* String+Extensions.swift in Sources */,
 				33964FB52BA04B5C00A16E92 /* SecretAPIkey.swift in Sources */,
 				33964FD72BA064DB00A16E92 /* ImageLoader.swift in Sources */,
+				33964FE42BA0C2A700A16E92 /* ToolListPresenter.swift in Sources */,
 				33964FD22BA0545500A16E92 /* URLRequest.swift in Sources */,
 				33964FBC2BA04FB600A16E92 /* Tools.swift in Sources */,
 				33964FD02BA0543600A16E92 /* StackExchangeClient.swift in Sources */,
 				33964F942BA04A4700A16E92 /* DetailedVC.swift in Sources */,
 				33964FB72BA04F1700A16E92 /* SearchResultsPresenter.swift in Sources */,
 				33964FDF2BA0761300A16E92 /* ControllerFabric.swift in Sources */,
+				33964FEB2BA1615C00A16E92 /* DataLoader.swift in Sources */,
 				33964FC22BA0529800A16E92 /* AlertDisplayer.swift in Sources */,
 				33964FDA2BA0651000A16E92 /* CustomLayout.swift in Sources */,
 				33964FD52BA0640600A16E92 /* SearchResultsViewControllerCell.swift in Sources */,

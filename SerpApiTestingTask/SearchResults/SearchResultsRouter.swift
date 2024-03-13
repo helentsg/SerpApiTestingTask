@@ -11,8 +11,8 @@ import UIKit
 
 protocol SearchResultsRouterProtocol {
     func navigateToDetailedView(for image: ImagesResult)
-//    func navigateToToolList(for type: ToolListType,
-  //                          delegate: ToolListPresenterProtocol)
+    func navigateToToolList(for type: ToolListType,
+                            delegate: SearchResultsPresenterProtocol)
 }
 
 
@@ -33,12 +33,12 @@ class SearchResultsRouter: SearchResultsRouterProtocol {
 //                                                 animated: true)
     }
     
-//    func navigateToToolList(for type: ToolListType,
-//                            delegate: ToolListPresenterProtocol) {
-//        let controller = ControllerFabric.toolList(for: type,
-//                                                   delegate: delegate)
-//        let navigationController = UINavigationController(rootViewController: controller)
-//        self.controller?.present(navigationController, animated: true)
- //   }
+    func navigateToToolList(for type: ToolListType,
+                            delegate: SearchResultsPresenterProtocol) {
+        let controller = ControllerFabric.toolList(for: type,
+                                                   delegate: delegate)
+        let navigationController = UINavigationController(rootViewController: controller)
+        self.controller?.present(navigationController, animated: true)
+    }
     
 }

@@ -32,20 +32,18 @@ class ControllerFabric: NSObject {
 //        return controller
 //    }
 //    
-//    class func toolList(for type: ToolListType,
-//                        delegate: ToolListPresenterProtocol)   -> UIViewController {
-//        let controller = ToolListViewController()
-//        let router =  ToolListRouter(controller: controller)
-//        let presenter =  ToolListPresenter(view: controller,
-//                                           router: router,
-//                                           type: type,
-//                                           delegate: delegate)
-//        let interactor =  ToolListInteractor(presenter: presenter,
-//                                             dataLoader: dataLoader)
-//        presenter.interactor = interactor
-//        controller.presenter = presenter
-//        return controller
-//    }
+    class func toolList(for type: ToolListType,
+                        delegate: SearchResultsPresenterProtocol)   -> UIViewController {
+        let storyboard = UIStoryboard(name: "ToolListVC", bundle: nil)
+        let controller = storyboard.instantiateViewController(withIdentifier: "ToolListVC") as! ToolListVC
+        let router = ToolListRouter(controller: controller)
+        let presenter =  ToolListPresenter(view: controller,
+                                                   router: router,
+                                                   type: type,
+                                                   delegate: delegate)
+        controller.presenter = presenter
+        return controller
+    }
 //    
 //    class func webVC(for image: ImagesResult)   -> UIViewController {
 //        let controller = WebViewController()
