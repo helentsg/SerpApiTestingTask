@@ -44,7 +44,7 @@ class SearchResultsPresenter: NSObject, SearchResultsPresenterProtocol {
     
     func selectedItem(for indexPath: IndexPath) {
         let image = images[indexPath.item]
-        router.navigateToDetailedView(for: image)
+        router.navigateToDetailedPageView(for: image, delegate: self)
     }
     
     func changeInList(for type: ToolListType) {

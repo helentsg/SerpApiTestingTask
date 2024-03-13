@@ -25,9 +25,7 @@ class ToolListVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupViews()
-        Task {
-            try? await presenter?.showList()
-        }
+        presenter?.showList()
     }
     
     @IBAction func clearButtonTapped(_ sender: UIBarButtonItem) {

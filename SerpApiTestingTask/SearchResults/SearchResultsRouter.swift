@@ -10,9 +10,11 @@ import Foundation
 import UIKit
 
 protocol SearchResultsRouterProtocol {
-    func navigateToDetailedView(for image: ImagesResult)
+    
     func navigateToToolList(for type: ToolListType,
                             delegate: SearchResultsPresenterProtocol)
+    func navigateToDetailedPageView(for image: ImagesResult,
+                                    delegate: SearchResultsPresenterProtocol)
 }
 
 
@@ -26,11 +28,12 @@ class SearchResultsRouter: SearchResultsRouterProtocol {
     }
     
     // MARK: Protocol methods
-    func navigateToDetailedView(for image: ImagesResult) {
-//        let controller = ControllerFabric.detailedVC(for: image)
-//        let navigationController = self.controller?.navigationController
-//        navigationController?.pushViewController(controller,
-//                                                 animated: true)
+    func navigateToDetailedPageView(for image: ImagesResult,
+                                delegate: SearchResultsPresenterProtocol) {
+        let controller = ControllerFabric.detailedPageVC(for: image, delegate: delegate)
+        let navigationController = self.controller?.navigationController
+        navigationController?.pushViewController(controller,
+                                                 animated: true)
     }
     
     func navigateToToolList(for type: ToolListType,
