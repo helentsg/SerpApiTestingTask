@@ -12,6 +12,7 @@ protocol SearchResultsPresenterProtocol: AnyObject {
     func height(for indexPath: IndexPath, and width: CGFloat) -> CGFloat 
     func image(for indexPath: IndexPath) -> ImagesResult
     var lastIndex: IndexPath { get }
+    func clearSearch()
     func image(position: Int) -> ImagesResult?
 }
 
@@ -45,6 +46,10 @@ class SearchResultsPresenter: NSObject, SearchResultsPresenterProtocol {
     
     func changeInList(for type: ToolListType) {
         router.navigateToToolList(for: type, delegate: self)
+    }
+    
+    func clearSearch() {
+        images = []
     }
     
 }

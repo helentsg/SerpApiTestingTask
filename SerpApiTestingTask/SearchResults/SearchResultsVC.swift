@@ -14,15 +14,11 @@ class SearchResultsVC: UIViewController {
     private var toolsMenu: UIMenu!
     private let indicatorView = UIActivityIndicatorView(style: .large)
     var presenter: SearchResultsPresenterProtocol?
+    let refreshControl = UIRefreshControl()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setupViews()
-    }
-    
-    @IBAction func didPullToRefresh(_ sender: UIRefreshControl) {
-        
-        collectionView.refreshControl?.endRefreshing()
     }
     
 }
@@ -59,10 +55,15 @@ extension SearchResultsVC {
         collectionView.prefetchDataSource = self
         collectionView.backgroundColor = .clear
         collectionView.contentInset = UIEdgeInsets(top: 23, left: 16, bottom: 10, right: 16)
-        //        refreshControl.addTarget(self, action: #selector(didPullToRefresh), for: .valueChanged)
-        //        collectionView.refreshControl = refreshControl
+        refreshControl.addTarget(self, action: #selector(didPullToRefresh), for: .valueChanged)
+        collectionView.refreshControl = refreshControl
         collectionView.keyboardDismissMode = .onDrag
         collectionView.isHidden = true
+    }
+    
+    @IBAction func didPullToRefresh(_ sender: UIRefreshControl) {
+        collectionView.refreshControl?.endRefreshing()
+        presenter?.fetchImages()
     }
     
     func setupActivityIndicator() {
@@ -179,9 +180,10 @@ extension SearchResultsVC: UISearchBarDelegate {
     }
     
     @IBAction func reload(_ searchBar: UISearchBar) {
-        if searchBar.text == "" {
+        if searchBar.text == nil && searchBar.text == "" {
             presenter?.tools.query = nil
-            //    fetchContentList()
+            presenter?.clearSearch()
+            collectionView.reloadData()
         }
         guard let query = searchBar.text?.lowercased(), query.trimmingCharacters(in: .whitespaces) != "", query.count > 2 else {
             return

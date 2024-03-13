@@ -4,8 +4,8 @@ import UIKit
 class ControllerFabric: NSObject {
     
     class func searchResultsVC()  -> UIViewController {
-        let storyboard = UIStoryboard(name: "SearchResults", bundle: nil)
-        let controller = storyboard.instantiateViewController(withIdentifier: "SearchResults") as! SearchResultsVC
+        let storyboard = UIStoryboard(name: "SearchResultsVC", bundle: nil)
+        let controller = storyboard.instantiateViewController(withIdentifier: "SearchResultsVC") as! SearchResultsVC
         let router = SearchResultsRouter(controller: controller)
         let presenter = SearchResultsPresenter(view: controller,
                                                router: router)
@@ -26,7 +26,7 @@ class ControllerFabric: NSObject {
         return controller
     }
     
-    class func detailedVC(for image: ImagesResult)   -> UIViewController {
+    class func detailedVC(for image: ImagesResult)   -> DetailedVC {
         let storyboard = UIStoryboard(name: "DetailedVC", bundle: nil)
         let controller = storyboard.instantiateViewController(withIdentifier: "DetailedVC") as! DetailedVC
         let router = DetailedRouter(controller: controller)

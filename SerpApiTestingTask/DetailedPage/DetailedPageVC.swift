@@ -2,7 +2,7 @@
 import UIKit
 
 protocol DetailedPageViewProtocol: AnyObject {
-    func set(pages: [UIViewController])
+    func set(pages: [DetailedVC])
     func setupPreviousButton(isEnabled: Bool)
     func setupNextButton(isEnabled: Bool)
 }
@@ -18,7 +18,7 @@ class DetailedPageVC: UIPageViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupViews()
-        presenter?.createInitialPage()
+        presenter?.createPages()
     }
     
     func setupViews() {
@@ -28,7 +28,6 @@ class DetailedPageVC: UIPageViewController {
     
     func setupSelf() {
         delegate = self
-        dataSource = self
     }
 
     func setupNavigationController() {
@@ -81,7 +80,6 @@ extension DetailedPageVC: UIPageViewControllerDataSource {
 extension DetailedPageVC: UIPageViewControllerDelegate {
     
     func pageViewController(_ pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [UIViewController], transitionCompleted completed: Bool) {
-        
     }
     
 }
@@ -89,7 +87,7 @@ extension DetailedPageVC: UIPageViewControllerDelegate {
 // MARK: ToolListViewInputProtocol
 extension DetailedPageVC: DetailedPageViewProtocol {
     
-    func set(pages: [UIViewController]) {
+    func set(pages: [DetailedVC]) {
         setViewControllers(pages, direction: .forward, animated: false)
     }
     

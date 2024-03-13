@@ -79,7 +79,7 @@
 		33964F5A2BA0490B00A16E92 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		33964F5C2BA0490B00A16E92 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		33964F5E2BA0490B00A16E92 /* SearchResultsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultsVC.swift; sourceTree = "<group>"; };
-		33964F612BA0490B00A16E92 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/SearchResults.storyboard; sourceTree = "<group>"; };
+		33964F612BA0490B00A16E92 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/SearchResultsVC.storyboard; sourceTree = "<group>"; };
 		33964F632BA0490C00A16E92 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		33964F682BA0490C00A16E92 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		33964F6D2BA0490C00A16E92 /* SerpApiTestingTaskTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SerpApiTestingTaskTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -219,7 +219,7 @@
 			children = (
 				33964FD82BA064F700A16E92 /* Layout */,
 				33964FD32BA063D800A16E92 /* Cell */,
-				33964F602BA0490B00A16E92 /* SearchResults.storyboard */,
+				33964F602BA0490B00A16E92 /* SearchResultsVC.storyboard */,
 				33964F5E2BA0490B00A16E92 /* SearchResultsVC.swift */,
 				33964FB62BA04F1700A16E92 /* SearchResultsPresenter.swift */,
 				33964FDB2BA0676E00A16E92 /* SearchResultsRouter.swift */,
@@ -565,12 +565,12 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		33964F602BA0490B00A16E92 /* SearchResults.storyboard */ = {
+		33964F602BA0490B00A16E92 /* SearchResultsVC.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
 				33964F612BA0490B00A16E92 /* Base */,
 			);
-			name = SearchResults.storyboard;
+			name = SearchResultsVC.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
