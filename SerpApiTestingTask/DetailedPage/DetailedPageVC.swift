@@ -97,7 +97,6 @@ extension DetailedPageVC: UIPageViewControllerDelegate {
         guard let nextIndex = nextVC.presenter?.index else {
             fatalError("Should contain presenter and position number")
         }
-        print(nextIndex)
         presenter?.index.next = nextIndex
     }
     
