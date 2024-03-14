@@ -26,6 +26,10 @@ class DetailedVC: UIViewController {
         presenter?.showDetails()
     }
     
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        changeImageViewHeight()
+    }
     
     @IBAction func moveToSource(_ sender: UIButton) {
         presenter?.linkButtonPressed()
@@ -38,14 +42,20 @@ extension DetailedVC : SetupViewProtocol {
     
     func setupViews() {
         setupSelf()
+        setupScrollView()
         setupTitleLabel()
         setupStackView()
         setupImageView()
         setupLinkButton()
+        setupActivityIndicator()
     }
     
     func setupSelf() {
         view.backgroundColor = .white
+    }
+    
+    func setupScrollView() {
+        scrollView.showsVerticalScrollIndicator = false
     }
     
     func setupStackView() {
@@ -63,9 +73,10 @@ extension DetailedVC : SetupViewProtocol {
         
     func setupImageView() {
         imageView.contentMode = .scaleAspectFit
-        imageView.layer.cornerRadius = 8
         imageView.clipsToBounds = true
-        setupActivityIndicator()
+        imageView.layer.cornerRadius = 16
+        imageView.layer.borderWidth = 0.5
+        imageView.layer.borderColor = CGColor.init(gray: 0.5, alpha: 1)
     }
     
     func setupLinkButton() {
@@ -132,7 +143,7 @@ extension DetailedVC: DetailedViewProtocol {
     }
     
     func changeImageViewHeight() {
-        let width = view.frame.width
+        let width = imageView.frame.width
         if let newHeight = presenter?.calculateImageHeight(for: width) {
             imageViewHeight.constant = newHeight
             stackView.layoutIfNeeded()

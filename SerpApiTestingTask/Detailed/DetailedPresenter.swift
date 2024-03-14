@@ -12,7 +12,7 @@ protocol DetailedPresenterProtocol: AnyObject {
 
 class DetailedPresenter: DetailedPresenterProtocol {
     
-    unowned let view: DetailedViewProtocol
+    weak var view: DetailedViewProtocol?
     private var router: DetailedRouterProtocol!
     private var image: ImagesResult
     let imageLoader = ImageLoader()
@@ -27,12 +27,12 @@ class DetailedPresenter: DetailedPresenterProtocol {
     
     @MainActor
     func showDetails() {
-        view.display(title: image.title)
-        view.changeImageViewHeight()
+        view?.display(title: image.title)
+        view?.changeImageViewHeight()
         Task {
             guard let url = URL(string: image.original) else { return }
             let image = try await imageLoader.downloadImage(from: url)
-            view.setup(image: image)
+            view?.setup(image: image)
         }
     }
     
