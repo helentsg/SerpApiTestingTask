@@ -52,6 +52,7 @@
 		33964FF82BA176F600A16E92 /* DetailedRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33964FF72BA176F600A16E92 /* DetailedRouter.swift */; };
 		33964FFC2BA1CD5500A16E92 /* Array+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33964FFB2BA1CD5500A16E92 /* Array+Extensions.swift */; };
 		339650012BA3194500A16E92 /* SetupViewProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 339650002BA3194500A16E92 /* SetupViewProtocol.swift */; };
+		339650032BA354BF00A16E92 /* UIPageViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 339650022BA354BF00A16E92 /* UIPageViewController+Extension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -121,6 +122,7 @@
 		33964FF72BA176F600A16E92 /* DetailedRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailedRouter.swift; sourceTree = "<group>"; };
 		33964FFB2BA1CD5500A16E92 /* Array+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+Extensions.swift"; sourceTree = "<group>"; };
 		339650002BA3194500A16E92 /* SetupViewProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetupViewProtocol.swift; sourceTree = "<group>"; };
+		339650022BA354BF00A16E92 /* UIPageViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIPageViewController+Extension.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -258,6 +260,7 @@
 				33964FFB2BA1CD5500A16E92 /* Array+Extensions.swift */,
 				33964FC32BA052B600A16E92 /* Double+Extensions.swift */,
 				33964FC52BA052CA00A16E92 /* String+Extensions.swift */,
+				339650022BA354BF00A16E92 /* UIPageViewController+Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -521,6 +524,7 @@
 				33964FF82BA176F600A16E92 /* DetailedRouter.swift in Sources */,
 				33964FF42BA176C900A16E92 /* DetailedVC.swift in Sources */,
 				33964FEB2BA1615C00A16E92 /* DataLoader.swift in Sources */,
+				339650032BA354BF00A16E92 /* UIPageViewController+Extension.swift in Sources */,
 				33964FED2BA16CBF00A16E92 /* DetailedPagePresenter.swift in Sources */,
 				33964FC22BA0529800A16E92 /* AlertDisplayer.swift in Sources */,
 				33964FDA2BA0651000A16E92 /* CustomLayout.swift in Sources */,

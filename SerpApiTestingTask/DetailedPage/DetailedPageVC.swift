@@ -19,6 +19,7 @@ class DetailedPageVC: UIPageViewController {
         super.viewDidLoad()
         setupViews()
         presenter?.createPages()
+        setupInitImage()
     }
     
     func setupViews() {
@@ -28,6 +29,14 @@ class DetailedPageVC: UIPageViewController {
     
     func setupSelf() {
         delegate = self
+        dataSource = self
+        modalTransitionStyle = .crossDissolve
+    }
+    
+    func setupInitImage() {
+        if let VC = presenter?.getCurrentVC() {
+            set(pages: [VC])
+        }
     }
 
     func setupNavigationController() {
@@ -54,11 +63,15 @@ class DetailedPageVC: UIPageViewController {
     }
     
     @IBAction func showPreviousImage(_ sender: UIBarButtonItem) {
-        presenter?.previousButtonTapped()
+        goToPreviousPage() { isDone in
+            self.presenter?.previousButtonTapped()
+        }
     }
     
     @IBAction func showNextImage(_ sender: UIBarButtonItem) {
-        presenter?.nextButtonTapped()
+        goToNextPage() { isDone in
+            self.presenter?.nextButtonTapped()
+        }
     }
     
 }
@@ -79,7 +92,18 @@ extension DetailedPageVC: UIPageViewControllerDataSource {
 // MARK: UIPageViewControllerDataSource
 extension DetailedPageVC: UIPageViewControllerDelegate {
     
+    func pageViewController(pageViewController: UIPageViewController, willTransitionToViewControllers pendingViewControllers: [DetailedVC]) {
+        let nextVC = pendingViewControllers[0]
+        guard let nextIndex = nextVC.presenter?.index else {
+            fatalError("Should contain presenter and position number")
+        }
+        presenter?.index.next = nextIndex
+    }
+    
     func pageViewController(_ pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [UIViewController], transitionCompleted completed: Bool) {
+        if completed {
+            presenter?.transitionCompleted()
+        }
     }
     
 }

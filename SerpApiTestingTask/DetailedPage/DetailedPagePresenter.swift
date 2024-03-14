@@ -11,9 +11,12 @@ protocol DetailedPagePresenterProtocol: AnyObject {
     func createPages()
     func navigateBackToList()
     func previousButtonTapped()
-    func getPreviousVC() -> UIViewController?
+    func getPreviousVC() -> DetailedVC?
+    func getCurrentVC() -> DetailedVC?
     func nextButtonTapped()
-    func getNextVC() -> UIViewController?
+    func getNextVC() -> DetailedVC?
+    var index: (current: Int, next: Int) { get set }
+    func transitionCompleted()
 }
 
 enum Page {
@@ -26,8 +29,7 @@ class DetailedPagePresenter : DetailedPagePresenterProtocol {
     private var router: DetailedPageRouterProtocol!
     private var delegate: SearchResultsPresenterProtocol
     private var pages: [Page: DetailedVC? ] = [:]
-    private var currentPosition: Int
-    
+    var index: (current: Int, next: Int)
     
     required init(view: DetailedPageViewProtocol,
                       router: DetailedPageRouterProtocol,
@@ -36,21 +38,21 @@ class DetailedPagePresenter : DetailedPagePresenterProtocol {
         self.view = view
         self.router = router
         self.delegate = delegate
-        currentPosition = image.position
+        self.index = (current: image.position,
+                      next: image.position + 1)
     }
     
     func createPages() {
-        if let currentImage = delegate.image(position: currentPosition) {
-            pages[.current] = ControllerFabric.detailedVC(for: currentImage)
-            if let mapped = pages[.current].flatMap({$0}) {
-                view.set(pages: [mapped])
-            }
-        }
-        if let previousImage = delegate.image(position: currentPosition - 1) {
+        if let previousImage = delegate.image(position: index.current - 1) {
             let previousPage = ControllerFabric.detailedVC(for: previousImage)
             pages[.previous] = previousPage
         }
-        if let nextImage = delegate.image(position: currentPosition + 1) {
+        if let currentImage = delegate.image(position: index.current) {
+            let currentPage = ControllerFabric.detailedVC(for: currentImage)
+            pages[.current] = currentPage
+        }
+        
+        if let nextImage = delegate.image(position: index.current + 1) {
             let nextPage = ControllerFabric.detailedVC(for: nextImage)
             pages[.next] = nextPage
         }
@@ -61,11 +63,15 @@ class DetailedPagePresenter : DetailedPagePresenterProtocol {
     }
     
     func previousButtonTapped() {
-        currentPosition = currentPosition > 0 ? currentPosition - 1 : 0
+        index.current = index.current > 0 ? index.current - 1 : 0
         createPages()
     }
     
-    func getPreviousVC() -> UIViewController? {
+    func getCurrentVC() -> DetailedVC? {
+        return pages[.current].flatMap({$0})
+    }
+    
+    func getPreviousVC() -> DetailedVC? {
         if let prevVC = pages[.previous] {
             view.setupPreviousButton(isEnabled: true)
             return prevVC
@@ -76,11 +82,11 @@ class DetailedPagePresenter : DetailedPagePresenterProtocol {
     }
     
     func nextButtonTapped() {
-        currentPosition += 1
+        index.current = index.current + 1
         createPages()
     }
     
-    func getNextVC() -> UIViewController? {
+    func getNextVC() -> DetailedVC? {
         if let nextVC = pages[.next] {
             view.setupNextButton(isEnabled: true)
             return nextVC
@@ -88,6 +94,14 @@ class DetailedPagePresenter : DetailedPagePresenterProtocol {
             view.setupNextButton(isEnabled: false)
             return nil
         }
+    }
+    
+    
+    
+    func transitionCompleted() {
+        index.current = index.next
+        
+        createPages()
     }
     
 }

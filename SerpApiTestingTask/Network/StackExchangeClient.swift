@@ -17,7 +17,6 @@ final class StackExchangeClient {
         let urlRequest = URLRequest(url: baseURL.appendingPathComponent(request.path))
         let parameters = ["ijn": "\(page)"].merging(request.parameters, uniquingKeysWith: +)
         let encodedURLRequest = urlRequest.encode(with: parameters)
-        print(encodedURLRequest)
         session.dataTask(with: encodedURLRequest, completionHandler: { data, response, error in
             guard let httpResponse = response as? HTTPURLResponse,
                   httpResponse.hasSuccessStatusCode,

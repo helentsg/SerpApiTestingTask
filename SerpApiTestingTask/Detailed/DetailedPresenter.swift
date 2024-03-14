@@ -8,6 +8,7 @@ protocol DetailedPresenterProtocol: AnyObject {
     func showDetails()
     func linkButtonPressed()
     func calculateImageHeight(for width: CGFloat) -> CGFloat
+    var index: Int { get }
 }
 
 class DetailedPresenter: DetailedPresenterProtocol {
@@ -16,6 +17,7 @@ class DetailedPresenter: DetailedPresenterProtocol {
     private var router: DetailedRouterProtocol!
     private var image: ImagesResult
     let imageLoader = ImageLoader()
+    var index: Int
     
     required init(view: DetailedViewProtocol,
                   router: DetailedRouterProtocol,
@@ -23,6 +25,7 @@ class DetailedPresenter: DetailedPresenterProtocol {
         self.view = view
         self.router = router
         self.image = image
+        self.index = image.position
     }
     
     @MainActor

@@ -306,7 +306,6 @@ extension SearchResultsVC: UICollectionViewDataSource {
 extension SearchResultsVC: UICollectionViewDataSourcePrefetching {
     
     func collectionView(_ collectionView: UICollectionView, prefetchItemsAt indexPaths: [IndexPath]) {
-        print (indexPaths)
         if indexPaths.contains(where: isLoadingLastCells) {
             presenter?.fetchImages()
         }
