@@ -96,11 +96,9 @@ class DetailedPagePresenter : DetailedPagePresenterProtocol {
         }
     }
     
-    
-    
     func transitionCompleted() {
+        print(index)
         index.current = index.next
-        
         createPages()
     }
     

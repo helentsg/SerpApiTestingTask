@@ -72,7 +72,7 @@ extension DetailedVC : SetupViewProtocol {
     }
         
     func setupImageView() {
-        imageView.contentMode = .scaleAspectFit
+        imageView.contentMode = .scaleAspectFill
         imageView.clipsToBounds = true
         imageView.layer.cornerRadius = 16
         imageView.layer.borderWidth = 0.5

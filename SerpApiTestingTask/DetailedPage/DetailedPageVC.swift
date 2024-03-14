@@ -92,11 +92,12 @@ extension DetailedPageVC: UIPageViewControllerDataSource {
 // MARK: UIPageViewControllerDataSource
 extension DetailedPageVC: UIPageViewControllerDelegate {
     
-    func pageViewController(pageViewController: UIPageViewController, willTransitionToViewControllers pendingViewControllers: [DetailedVC]) {
-        let nextVC = pendingViewControllers[0]
+    func pageViewController(_ pageViewController: UIPageViewController, willTransitionTo pendingViewControllers: [UIViewController]) {
+        guard let nextVC = pendingViewControllers[0] as? DetailedVC else { return }
         guard let nextIndex = nextVC.presenter?.index else {
             fatalError("Should contain presenter and position number")
         }
+        print(nextIndex)
         presenter?.index.next = nextIndex
     }
     
