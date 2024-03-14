@@ -168,7 +168,7 @@ private extension SearchResultsVC {
         })
         return UIMenu(title: "Choose size", children: sizeActions)
     }
-    
+                                                   
     func generateCountryAction(for country: GoogleModel?) -> UIAction {
         let title = country == nil ? "Choose country" : "\(country!.name)"
         let image = country == nil ? nil : UIImage(systemName: "checkmark")
@@ -190,7 +190,7 @@ private extension SearchResultsVC {
     }
     
 }
-
+                                                   
 // MARK: UISearchBarDelegate
 extension SearchResultsVC: UISearchBarDelegate {
     
@@ -212,13 +212,13 @@ extension SearchResultsVC: UISearchBarDelegate {
         guard let query = searchBar.text?.lowercased(), query.trimmingCharacters(in: .whitespaces) != "", query.count > 2 else {
             return
         }
-        indicatorView.startAnimating()
         presenter?.tools.query = query
         presenter?.fetchImages()
     }
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         searchBar.resignFirstResponder()
+        indicatorView.startAnimating()
     }
     
 }

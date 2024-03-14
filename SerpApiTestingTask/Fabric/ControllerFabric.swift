@@ -25,8 +25,7 @@ class ControllerFabric: NSObject {
     }
     
     class func detailedVC(for image: ImagesResult)   -> DetailedVC {
-        let storyboard = UIStoryboard(name: "DetailedVC", bundle: nil)
-        let controller = storyboard.instantiateViewController(withIdentifier: "DetailedVC") as! DetailedVC
+        let controller = DetailedVC()
         let router = DetailedRouter(controller: controller)
         let presenter =  DetailedPresenter(view: controller,
                                            router: router,

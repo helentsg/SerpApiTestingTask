@@ -28,6 +28,7 @@ class DetailedPresenter: DetailedPresenterProtocol {
     @MainActor
     func showDetails() {
         view.display(title: image.title)
+        view.changeImageViewHeight()
         Task {
             guard let url = URL(string: image.original) else { return }
             let image = try await imageLoader.downloadImage(from: url)
