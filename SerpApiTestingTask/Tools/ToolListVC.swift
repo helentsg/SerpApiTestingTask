@@ -8,16 +8,16 @@ protocol ToolListViewProtocol: AnyObject {
 
 class ToolListVC: UIViewController {
     
-    @IBOutlet weak var searchBar: CustomSearchBar!
-    @IBOutlet weak var tableView: UITableView!
     private var clearBarItem: UIBarButtonItem!
+    private var searchBar = CustomSearchBar()
+    private var tableView = UITableView()
     
     var presenter: ToolListPresenterProtocol?
     
     // MARK: View controller life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupViews()
+        setupView()
         presenter?.showList()
     }
     
@@ -32,7 +32,7 @@ class ToolListVC: UIViewController {
 }
 
 // MARK: SetupViewProtocol
-extension ToolListVC {
+extension ToolListVC: SetupViewProtocol {
     
     func setupViews() {
         setupNavigationController()
@@ -80,6 +80,27 @@ extension ToolListVC {
         tableView.keyboardDismissMode = .onDrag
     }
 
+    func addViews() {
+        view.addSubview(searchBar)
+        view.addSubview(tableView)
+    }
+    
+    func setupConstraints() {
+        [searchBar, tableView].forEach {
+            $0.translatesAutoresizingMaskIntoConstraints = false
+        }
+        let margins = view.layoutMarginsGuide
+        NSLayoutConstraint.activate([
+            searchBar.leadingAnchor.constraint(equalTo: margins.leadingAnchor),
+            searchBar.topAnchor.constraint(equalTo: margins.topAnchor),
+            searchBar.trailingAnchor.constraint(equalTo: margins.trailingAnchor),
+            tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            tableView.topAnchor.constraint(equalTo: searchBar.bottomAnchor),
+            tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            tableView.bottomAnchor.constraint(equalTo: margins.bottomAnchor)
+        ])
+    }
+    
 }
 
 // MARK: UISearchBarDelegate

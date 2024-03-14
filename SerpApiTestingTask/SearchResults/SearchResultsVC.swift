@@ -9,29 +9,30 @@ protocol SearchResultsViewProtocol: AnyObject, AlertDisplayer {
 
 class SearchResultsVC: UIViewController {
     
-    @IBOutlet weak var searchBar: CustomSearchBar!
-    @IBOutlet weak var collectionView: UICollectionView!
+    private lazy var searchBar = CustomSearchBar()
+    private var collectionView: UICollectionView!
+    private let refreshControl = UIRefreshControl()
+    private lazy var indicatorView = UIActivityIndicatorView(style: .large)
     private var toolsMenu: UIMenu!
-    private let indicatorView = UIActivityIndicatorView(style: .large)
+    
     var presenter: SearchResultsPresenterProtocol?
-    let refreshControl = UIRefreshControl()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupViews()
+        setupView()
     }
     
 }
 
 // MARK: SetupViewProtocol
-extension SearchResultsVC {
+extension SearchResultsVC: SetupViewProtocol {
     
     func setupViews() {
         setupControllerView()
         setupToolsButton()
         setupSearchBar()
         setupCollectionView()
-        setupActivityIndicator()
+        setupIndicatorView()
     }
     
     func setupControllerView() {
@@ -47,8 +48,8 @@ extension SearchResultsVC {
     
     func setupCollectionView() {
         let layout = CustomLayout()
+        collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         layout.delegate = self
-        collectionView.collectionViewLayout = layout
         collectionView.register(SearchResultsViewControllerCell.self, forCellWithReuseIdentifier: SearchResultsViewControllerCell.reuseID)
         collectionView.delegate = self
         collectionView.dataSource = self
@@ -66,12 +67,35 @@ extension SearchResultsVC {
         presenter?.fetchImages()
     }
     
-    func setupActivityIndicator() {
+    func setupIndicatorView() {
         indicatorView.color = .systemMint
         view.addSubview(indicatorView)
-        indicatorView.center = view.center
         indicatorView.translatesAutoresizingMaskIntoConstraints = false
-        indicatorView.center = view.center
+        indicatorView.hidesWhenStopped = true
+    }
+    
+    func addViews() {
+        view.addSubview(searchBar)
+        view.addSubview(collectionView)
+        view.addSubview(indicatorView)
+    }
+    
+    func setupConstraints() {
+        [searchBar, collectionView, indicatorView].forEach { 
+            $0.translatesAutoresizingMaskIntoConstraints = false
+        }
+        let margins = view.layoutMarginsGuide
+        NSLayoutConstraint.activate([
+            searchBar.leadingAnchor.constraint(equalTo: margins.leadingAnchor),
+            searchBar.topAnchor.constraint(equalTo: margins.topAnchor),
+            searchBar.trailingAnchor.constraint(equalTo: margins.trailingAnchor),
+            collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            collectionView.topAnchor.constraint(equalTo: searchBar.bottomAnchor),
+            collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            collectionView.bottomAnchor.constraint(equalTo: margins.bottomAnchor),
+            indicatorView.centerXAnchor.constraint(equalTo: margins.centerXAnchor),
+            indicatorView.centerYAnchor.constraint(equalTo: margins.centerYAnchor)
+        ])
     }
     
 }
@@ -188,6 +212,7 @@ extension SearchResultsVC: UISearchBarDelegate {
         guard let query = searchBar.text?.lowercased(), query.trimmingCharacters(in: .whitespaces) != "", query.count > 2 else {
             return
         }
+        indicatorView.startAnimating()
         presenter?.tools.query = query
         presenter?.fetchImages()
     }
@@ -213,8 +238,8 @@ extension SearchResultsVC: SearchResultsViewProtocol {
     }
     
     func onFetchCompleted(with newIndexPathsToReload: [IndexPath]?) {
+        indicatorView.stopAnimating()
         guard let newIndexPathsToReload else {
-            indicatorView.stopAnimating()
             collectionView.isHidden = false
             collectionView.reloadData()
             return

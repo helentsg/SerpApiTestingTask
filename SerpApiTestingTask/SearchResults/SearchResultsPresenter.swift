@@ -49,6 +49,7 @@ class SearchResultsPresenter: NSObject, SearchResultsPresenterProtocol {
     }
     
     func clearSearch() {
+        currentPage = 0
         images = []
     }
     
@@ -115,6 +116,8 @@ extension SearchResultsPresenter {
     
     func updateToolsButton() {
         view?.setupToolsButton()
+        clearSearch()
+        fetchImages()
     }
     
     func height(for indexPath: IndexPath, and width: CGFloat) -> CGFloat {

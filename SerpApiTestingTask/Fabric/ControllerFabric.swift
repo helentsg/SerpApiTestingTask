@@ -4,8 +4,7 @@ import UIKit
 class ControllerFabric: NSObject {
     
     class func searchResultsVC()  -> UIViewController {
-        let storyboard = UIStoryboard(name: "SearchResultsVC", bundle: nil)
-        let controller = storyboard.instantiateViewController(withIdentifier: "SearchResultsVC") as! SearchResultsVC
+        let controller = SearchResultsVC()
         let router = SearchResultsRouter(controller: controller)
         let presenter = SearchResultsPresenter(view: controller,
                                                router: router)
@@ -15,8 +14,7 @@ class ControllerFabric: NSObject {
     
     class func detailedPageVC(for image: ImagesResult,
                               delegate: SearchResultsPresenterProtocol)   -> UIPageViewController {
-        let storyboard = UIStoryboard(name: "DetailedPageVC", bundle: nil)
-        let controller = storyboard.instantiateViewController(withIdentifier: "DetailedPageVC") as! DetailedPageVC
+        let controller = DetailedPageVC()
         let router = DetailedPageRouter(controller: controller)
         let presenter =  DetailedPagePresenter(view: controller,
                                                router: router,
@@ -39,8 +37,7 @@ class ControllerFabric: NSObject {
     
     class func toolList(for type: ToolListType,
                         delegate: SearchResultsPresenterProtocol)   -> UIViewController {
-        let storyboard = UIStoryboard(name: "ToolListVC", bundle: nil)
-        let controller = storyboard.instantiateViewController(withIdentifier: "ToolListVC") as! ToolListVC
+        let controller = ToolListVC()
         let router = ToolListRouter(controller: controller)
         let presenter =  ToolListPresenter(view: controller,
                                                    router: router,
