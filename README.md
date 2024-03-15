@@ -1,7 +1,4 @@
-
-
-https://github.com/helentsg/SerpApiTestingTask/assets/35640122/71892f7a-3552-4888-a89e-8b369f61bd72
-
+https://github.com/helentsg/SerpApiTestingTask/assets/35640122/28b93365-295b-41cb-9891-17a881ef86f9
 
 - MVP + Routers, UIKit
 - Pagination / Paging
