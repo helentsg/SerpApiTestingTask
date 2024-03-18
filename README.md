@@ -2,7 +2,7 @@ https://github.com/helentsg/SerpApiTestingTask/assets/35640122/28b93365-295b-41c
 
 - MVP + Routers, UIKit
 - Pagination / Paging
-- Custom Layout for UICollectionViewController
+- Custom Layout for UICollectionView
 - JSON Decoding
 - async / await
 - UIPageViewController to fetch previous and next Detailed pages
